@@ -12,7 +12,10 @@ public class MainActivity extends AppCompatActivity {
 
     EditText et_horas;
     Button btn_calcular;
-    TextView txt_resultado;
+    TextView txt_inicial;
+    TextView txt_resultadoSemanas;
+    TextView txt_resultadoDias;
+    TextView txt_resultadoHoras;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,14 +24,16 @@ public class MainActivity extends AppCompatActivity {
 
         et_horas = (EditText) findViewById(R.id.et_horas);
         btn_calcular = (Button) findViewById(R.id.btn_calcular);
-        txt_resultado = (TextView) findViewById(R.id.textView);
+        txt_resultadoSemanas = (TextView) findViewById(R.id.textView4);
+        txt_resultadoDias = (TextView) findViewById(R.id.textView5);
+        txt_resultadoHoras = (TextView) findViewById(R.id.textView6);
+        txt_inicial = (TextView) findViewById(R.id.textView7);
 
         btn_calcular.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
                 int numeroHoras = Integer.parseInt(et_horas.getText().toString());
                 int valorSemanas = 0, valorDias = 0, valorHoras = 0, operacao = numeroHoras;
-                String saida = "";
 
                 while (numeroHoras > 0){
                     if (numeroHoras >= 168){
@@ -43,28 +48,12 @@ public class MainActivity extends AppCompatActivity {
                     }
                 }
 
-                saida = operacao + " " + "horas são ";
-
-                if (valorSemanas > 1 || valorSemanas == 0){
-                    saida += valorSemanas + " " + "semanas, ";
-                } else {
-                    saida += valorSemanas + " " + "semana, ";
-                }
-
-                if (valorDias > 1 || valorDias == 0){
-                    saida += valorDias + " " + "dias, ";
-                } else {
-                    saida += valorDias + " " + "dia, ";
-                }
-
-                if (valorHoras > 1 || valorHoras == 0){
-                    saida += valorHoras + " " + "horas.";
-                } else {
-                    saida += valorHoras + " " + "hora.";
-                }
-
-                txt_resultado.setText(saida);
+                txt_inicial.setText(operacao + " " + "horas são ");
+                txt_resultadoSemanas.setText(Integer.toString(valorSemanas));
+                txt_resultadoDias.setText(Integer.toString(valorDias));
+                txt_resultadoHoras.setText(Integer.toString(valorHoras));
                 et_horas.setText("");
+
             }
         });
     }
